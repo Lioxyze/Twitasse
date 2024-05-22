@@ -1,0 +1,15 @@
+Mongodb:
+Post Sur le reseau
+Commentaire
+like dislike
+
+
+
+
+
+
+
+
+Sql:
+utilisateur
+follower follow

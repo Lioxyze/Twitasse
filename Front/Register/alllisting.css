@@ -1,0 +1,16 @@
+.logo {
+  position: relative;
+  left: 310px;
+}
+
+.logologin {
+  height: 200px;
+}
+
+.container-fluid {
+  --bs-gutter-x: 0 rem;
+}
+
+h1 {
+  color: black;
+}

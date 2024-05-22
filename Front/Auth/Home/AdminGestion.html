@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil - Twitasse</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="fr">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profil - Twitasse</title>
+        <link
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
+        <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="home.css" />
+      </head>
+      <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#"
+            ><img src="../image/location.png" height="90" alt="" srcset=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="../Home/homeAdmin.html"
+                  >Accueil <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Messages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Auth/Home/ProfilePage.html"
+                  >Profil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Notifications</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Auth/Home/AdminGestion.html"
+                  >Admin</a
+                >
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                placeholder="Rechercher"
+                aria-label="Rechercher"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Rechercher
+              </button>
+            </form>
+            <a href="#">
+              <button
+                class="btn btn-success ml-2"
+                type="button"
+                onclick="logout()"
+              >
+                Logout
+              </button>
+            </a>
+          </div>
+        </nav>
+
+        <div class="container mt-4">
+          <div class="w-100">
+            <div class="relative text-lg bg-transparent text-gray-800">
+              <div
+                class="flex items-center border-b border-b-2 border-teal-500 py-2"
+              >
+                <input
+                  id="searchInput"
+                  class="searchUser bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none"
+                  type="text"
+                  placeholder="Search"
+                />
+                <button
+                  type="submit"
+                  onclick="searchUser()"
+                  class="absolute right-0 top-0 mt-3 mr-4"
+                >
+                  <svg
+                    class="h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    id="Capa_1"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 56.966 56.966"
+                    style="enable-background: new 0 0 56.966 56.966"
+                    xml:space="preserve"
+                    width="20PX"
+                    height="20PX"
+                  >
+                    <path
+                      d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23 s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92 c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17 s-17-7.626-17-17S14.61,6,23.984,6z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="searchResults" class="mt-4">
+            <!-- Les résultats de la recherche seront affichés ici -->
+          </div>
+        </div>
+
+        <div class="d-flex flex-row flex-wrap">
+          <p class="cards d-flex flex-row flex-wrap"></p>
+        </div>
+
+        <footer class="footer mt-auto py-3 bg-light">
+          <div class="container text-center">
+            <span class="text-muted">© 2024 Instagram</span>
+          </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="../logout.js"></script>
+        <script src="./user.js"></script>
+        <script src="../Home/search.js"></script>
+      </body>
+    </html>
+  </body>
+</html>

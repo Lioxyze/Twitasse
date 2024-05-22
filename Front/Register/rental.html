@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="equi.css" />
+    <title>Rental</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./assets/styles/components/accueil.css" />
+    <link rel="stylesheet" href="alllisting.css" />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <!-- Modal edit -->
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Rental</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="" class="form-label">NameRental</label>
+                <input type="" class="form-control" id="imageInput" />
+              </div>
+              <div class="mb-3">
+                <label for="nameInput" class="form-label">Image</label>
+                <input type="text" class="form-control" id="nameInput" />
+              </div>
+              <div class="mb-3">
+                <label for="descriptionInput" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="descriptionInput"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="priceInput" class="form-label"
+                  >RentalStartDate</label
+                >
+                <input type="date" class="form-control" id="priceInput" />
+              </div>
+              <div class="mb-3">
+                <label for="priceInput" class="form-label">RentalEndDate</label>
+                <input type="date" class="form-control" id="priceInput" />
+              </div>
+              <div class="mb-3">
+                <label for="quantityInput" class="form-label"
+                  >TotalRentalAmount</label
+                >
+                <input type="number" class="form-control" id="quantityInput" />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <img src="logo.png" alt="" height=50"" />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="./homefake.html" role="button">
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="./Rental.html"
+                >Rental</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="./equipment.html"
+                >Equipment</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Discount</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="https://www.paypal.com/paypalme/Lioxyze"
+                >Contact</a
+              >
+            </li>
+            <img src="../image/location.png" height="50" class="logo" />
+          </ul>
+          <div class="d-flex p-2 rid gap-3">
+            <a href="./login.html" class="logoutBtn">
+              <button onclick="logout()" type="button" class="btn btn-primary">
+                Disconnect
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <h1 class="my-6 w-full font-bold text-orange-400 text-center text-2xlr">
+        All available rental :
+      </h1>
+      <a
+        class="d-flex justify-content-center flex-wrap"
+        href="createrental.html"
+        ><button type="button" class="btn btn-primary flex-wrap">
+          New rental
+        </button></a
+      >
+
+      <div class="d-flex flex-row flex-wrap">
+        <p class="cards d-flex flex-row flex-wrap"></p>
+      </div>
+    </div>
+    <!-- Footer 2 - Bootstrap Brain Component -->
+    <footer class="footer">
+      <!-- Widgets - Bootstrap Brain Component -->
+      <section class="bg-light py-4 py-md-5 py-xl-8 border-top border-light">
+        <div class="container overflow-hidden">
+          <div class="row gy-4 gy-lg-0 justify-content-xl-between">
+            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+              <div class="widget">
+                <a href="#!">
+                  <img
+                    src="../image/location.png"
+                    alt="BootstrapBrain Logo"
+                    width="200"
+                    height="100"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+              <div class="widget">
+                <h4 class="widget-title mb-4">Get in Touch</h4>
+                <address class="mb-4">
+                  24 Av. Daniel Rops, 73000 Chambéry
+                </address>
+                <p class="mb-1">
+                  <a
+                    class="link-secondary text-decoration-none"
+                    href="tel:+15057922430"
+                    >+33 06 38 76 38 37</a
+                  >
+                </p>
+                <p class="mb-0">
+                  <a
+                    class="link-secondary text-decoration-none"
+                    href="mailto:demo@yourdomain.com"
+                    >locationVr@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+              <div class="widget">
+                <h4 class="widget-title mb-4">Learn More</h4>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <a href="#!" class="link-secondary text-decoration-none"
+                      >About</a
+                    >
+                  </li>
+                  <li class="mb-2">
+                    <a href="#!" class="link-secondary text-decoration-none"
+                      >Contact</a
+                    >
+                  </li>
+                  <li class="mb-2">
+                    <a href="#!" class="link-secondary text-decoration-none"
+                      >Advertise</a
+                    >
+                  </li>
+                  <li class="mb-2">
+                    <a href="#!" class="link-secondary text-decoration-none"
+                      >Terms of Service</a
+                    >
+                  </li>
+                  <li class="mb-0">
+                    <a href="#!" class="link-secondary text-decoration-none"
+                      >Privacy Policy</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 col-xl-4">
+              <div class="widget">
+                <h4 class="widget-title mb-4">Our Newsletter</h4>
+                <p class="mb-4">
+                  Subscribe to our newsletter to get our news & discounts
+                  delivered to you.
+                </p>
+                <form action="#!">
+                  <div class="row gy-4">
+                    <div class="col-12">
+                      <div class="input-group">
+                        <span
+                          class="input-group-text"
+                          id="email-newsletter-addon"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-envelope"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"
+                            />
+                          </svg>
+                        </span>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email-newsletter"
+                          value=""
+                          placeholder="Email Address"
+                          aria-label="email-newsletter"
+                          aria-describedby="email-newsletter-addon"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-grid">
+                        <button class="btn btn-primary" type="submit">
+                          Subscribe
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Copyright - Bootstrap Brain Component -->
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="louer.js"></script>
+    <script src="../Test/rental.js"></script>
+    <script src="delete.js"></script>
+    <script src="deleteTest.js"></script>
+    <script src="update.js"></script>
+  </body>
+</html>

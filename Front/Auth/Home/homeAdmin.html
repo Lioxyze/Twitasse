@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil - Twitasse</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"
+        ><img src="../image/location.png" height="90" alt=""
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../Home/homeAdmin.html"
+              >Accueil <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Auth/Profile/ProfileAdmin.html"
+              >Profil</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Auth/Home/AdminGestion.html">Admin</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Rechercher"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Rechercher
+          </button>
+        </form>
+        <a href="../Login_Register/login.html">
+          <button class="btn btn-success ml-2" type="button" onclick="logout()">
+            Logout
+          </button>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Profil</h5>
+              <img
+                src="https://via.placeholder.com/150"
+                alt="Profil"
+                class="img-fluid rounded-circle mb-3"
+              />
+              <p class="card-text">Nom d'utilisateur</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Notifications</h5>
+              <p class="card-text">Vous avez des notifications en attente.</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Créer</h5>
+              <p class="card-text">Commencez à créer votre contenu.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- carte pour ouvrir le modal de création de post -->
+        <div class="col-md-5">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Nouveau Post</h5>
+              <p class="card-text">
+                Cliquez sur le bouton ci-dessous pour créer un nouveau post.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#createPostModal"
+              >
+                Créer un Post
+              </button>
+            </div>
+
+            <!-- CARD ALL -->
+          </div>
+          <div class="cards"></div>
+        </div>
+
+        <!-- Modal de création de post -->
+        <div
+          class="modal fade"
+          id="createPostModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="createPostModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="createPostModalLabel">
+                  Créer un Nouveau Post
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="postTitle">Titre du Post</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="postTitle"
+                      placeholder="Titre"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="postImage">Image du Post</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="postImage"
+                      placeholder="Image URL"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="postContent">Contenu du Post</label>
+                    <textarea
+                      class="form-control"
+                      id="postContent"
+                      rows="3"
+                      placeholder="Contenu du post"
+                    ></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Fermer
+                </button>
+                <button
+                  type="button"
+                  onclick="createPost()"
+                  class="btn btn-primary"
+                >
+                  Publier
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin du Modal de création de post -->
+
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">À propos de nous</h5>
+              <p class="card-text">
+                Bienvenue sur Twitasse, le réseau social où chaque voix compte
+                et où l'authenticité est reine. Chez Twitasse, nous croyons en
+                la puissance des mots et des idées pour rapprocher les gens,
+                créer des conversations significatives et cultiver des
+                communautés vibrantes.
+              </p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Suggestions pour vous</h5>
+              <div class="profile"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">© 2024 Twitasse</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./post.js"></script>
+    <script src="../logout.js"></script>
+    <script src="./like.js"></script>
+    <script src="../Home/Sugestion.js"></script>
+  </body>
+</html>

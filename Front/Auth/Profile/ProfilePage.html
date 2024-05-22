@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil - Twitasse</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="ProfilePage.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"
+        ><img src="../image/location.png" height="90" alt="" srcset=""
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../Home/homeAdmin.html"
+              >Accueil <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Auth/Profile/ProfilePage.html">Profil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Rechercher"
+            aria-label="Rechercher"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Rechercher
+          </button>
+        </form>
+        <a href="#">
+          <button class="btn btn-success ml-2" type="button" onclick="logout()">
+            Logout
+          </button>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="profile card-body text-center"></div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Abonnés</h5>
+              <ul class="list-unstyled">
+                <li class="media my-2">
+                  <img
+                    src="https://via.placeholder.com/50"
+                    class="mr-3 rounded-circle"
+                    alt="..."
+                  />
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">@utilisateur1</h6>
+                  </div>
+                </li>
+                <li class="media my-2">
+                  <img
+                    src="https://via.placeholder.com/50"
+                    class="mr-3 rounded-circle"
+                    alt="..."
+                  />
+                  <div class="media-body">
+                    <h6 class="mt-0 mb-1">@utilisateur2</h6>
+                  </div>
+                </li>
+                <!-- Ajouter d'autres abonnés ici -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="d-flex flex-row flex-wrap">
+            <p class="cards d-flex flex-row flex-wrap"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">© 2024 Instagram</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../logout.js"></script>
+    <script src="../Home/mypost.js"></script>
+    <script src="../Home/delete.js"></script>
+  </body>
+</html>

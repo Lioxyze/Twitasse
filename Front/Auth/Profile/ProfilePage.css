@@ -1,0 +1,23 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+.card-title {
+  color: #000000; /* Couleur personnalisée pour les titres */
+}
+
+.btn-link {
+  color: #000000;
+}
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+}

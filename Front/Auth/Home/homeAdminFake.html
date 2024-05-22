@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitasse</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Twitasse</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Accueil <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Messages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Explorer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Rechercher"
+            aria-label="Rechercher"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Rechercher
+          </button>
+        </form>
+        <button class="btn btn-primary ml-2" type="button">Connexion</button>
+        <button class="btn btn-success ml-2" type="button">Inscription</button>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Profil</h5>
+              <img
+                src="https://via.placeholder.com/150"
+                alt="Profil"
+                class="img-fluid rounded-circle mb-3"
+              />
+              <p class="card-text">Nom d'utilisateur</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Notifications</h5>
+              <p class="card-text">Vous avez des notifications en attente.</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Créer</h5>
+              <p class="card-text">Commencez à créer votre contenu.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card mb-4">
+            <img
+              src="https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Photo+1"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <h5 class="card-title">Titre de la publication 1</h5>
+              <p class="card-text">
+                Un peu de texte pour illustrer le contenu de la publication.
+              </p>
+              <div class="btn-group">
+                <button type="button" class="btn btn-link">
+                  <i class="far fa-thumbs-up"></i>
+                </button>
+                <button type="button" class="btn btn-link">
+                  <i class="far fa-thumbs-down"></i>
+                </button>
+                <button type="button" class="btn btn-link">Commentaires</button>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <img
+              src="https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Photo+1"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <h5 class="card-title">Titre de la publication 1</h5>
+              <p class="card-text">
+                Un peu de texte pour illustrer le contenu de la publication.
+              </p>
+              <div class="btn-group">
+                <button type="button" class="btn btn-link">
+                  <i class="far fa-thumbs-up"></i>
+                </button>
+                <button type="button" class="btn btn-link">
+                  <i class="far fa-thumbs-down"></i>
+                </button>
+                <button type="button" class="btn btn-link">Commentaires</button>
+              </div>
+            </div>
+          </div>
+          <!-- publications -->
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">À propos de nous</h5>
+              <p class="card-text">Quelques informations sur Twitasse.</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Publicités</h5>
+              <p class="card-text">Des annonces intéressantes pour vous.</p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Suggestions pour vous</h5>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://via.placeholder.com/50"
+                  alt="User"
+                  class="rounded-circle mr-2"
+                />
+                <h6 class="card-subtitle text-muted">@nom_utilisateur</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">© 2024 Twitasse</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./post.js"></script>
+    <script src="../logout.js"></script>
+    <script src="./like.js"></script>
+    <script src="../Home/Sugestion.js"></script>
+  </body>
+</html>
