@@ -8,6 +8,8 @@ async function getAllListings() {
 
     // Accéder directement à response.data
     response.data.forEach((listing) => {
+      let imageUrl = `http://localhost:3000/uploads/${listing.profilePicture}`;
+
       let card = document.createElement("div");
       card.classList.add("card");
       card.style.width = "18rem";
@@ -15,12 +17,8 @@ async function getAllListings() {
       card.style.margin = "5px";
 
       card.innerHTML = `
-<div class="d-flex align-items-center mb-3">
-                <img
-                  src="${listing.Image}"
-                  alt="User"
-                  class="rounded-circle mr-2"
-                />
+                <div class="d-flex align-items-center mb-3">
+                <img src=${imageUrl} class="rounded-circle mr-2"  height="30" />
                 <h6 class="card-subtitle text-muted">@${listing.Pseudo}</h6>
       `;
 

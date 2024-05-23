@@ -19,7 +19,7 @@ async function GetPublicationByUserId() {
 
     if (Array.isArray(response)) {
       response.forEach((listing) => {
-        let imageUrl = `http://localhost:3000/uploads/${listing.Image}`;
+        let imageUrl = `http://localhost:3000/uploads/${listing.profilePicture}`;
         console.log(imageUrl);
         let card = document.createElement("div");
         card.classList.add("card");
@@ -32,18 +32,22 @@ async function GetPublicationByUserId() {
             <img src="${listing.image}" class="card-img-top imagesize" alt="Image">
             <div class="card-body">
               <div class="d-flex align-items-center mb-3">
-                <img src="${imageUrl}" class="rounded-circle mr-2" />
+                <img src="${imageUrl}" class="rounded-circle mr-2" height="30" />
                 <h6 class="card-subtitle text-muted">@${listing.pseudo}</h6>
               </div>
               <h5 class="card-title">${listing.title}</h5>
               <p class="card-text">${listing.description}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <button type="button" class="btn btn-link">Commentaires</button>
                 <div class="like"></div>
-             <button type="button" class="btn btn-danger deleteButton" onclick="deleteEquipment(${listing.EquipmentID})">Delete</button>
-
-  
-
+        <button  type="button"  onclick="deletePost('${listing._id}')" class="btn-primary">Delete</button>
+        <button
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#createPostModal"
+              >
+                Edit
+              </button>
               </div>
             </div>
           </div>
@@ -66,15 +70,18 @@ async function GetPublicationByUserId() {
     );
   }
 }
-GetPublicationByUserId();
-async function deleteEquipment(EquipmentID) {
+
+async function deleteEquipment(_id) {
   try {
+    let jwt = window.localStorage.getItem("jwt");
+
     const response = await fetch(
-      `http://localhost:3000/api/equipementDelete/${EquipmentID}`,
+      `http://localhost:3000/api/deletePost/${_id}`,
       {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
+          Authorization: `Bearer ${jwt}`,
         },
       }
     );
@@ -82,8 +89,13 @@ async function deleteEquipment(EquipmentID) {
     if (response.ok) {
       const data = await response.json();
       alert(data.message);
+    } else {
+      const errorData = await response.json();
+      console.error("Erreur lors de la suppression :", errorData);
     }
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
   }
 }
+
+GetPublicationByUserId();

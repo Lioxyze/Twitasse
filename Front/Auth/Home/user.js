@@ -6,9 +6,10 @@ async function getAllListings() {
 
     let cardsContainer = document.querySelector(".cards");
 
-    // Accéder directement à response.data
     response.data.forEach((listing) => {
-      let imageUrl = `http://localhost:3000/src/uploads/${listing.profilePicture}`;
+      let imageUrl = `http://localhost:3000/uploads/${listing.profilePicture}`;
+
+      console.log(imageUrl);
 
       let card = document.createElement("div");
       card.classList.add("card");
@@ -18,12 +19,7 @@ async function getAllListings() {
 
       card.innerHTML = `
         <div class="card mb-4">
-                        <img
-                src="../../../Back/src/uploads/${imageUrl}"
-                alt="Profil"
-                class="img-fluid rounded-circle mb-3"
-              />
-
+                <img src=${imageUrl} class="rounded-circle mr-2"  height="30" />
           <div class="card-body">
             <div class="d-flex align-items-center mb-3">
             </div>
@@ -34,15 +30,15 @@ async function getAllListings() {
             <p class="card-text">Email :
               ${listing.Email}
             </p>
-                        <p class="card-text">Token :
+            <p class="card-text">Token :
               ${listing.Token}
             </p>
-                        <p class="card-text">id_role :
+            <p class="card-text">id_role :
               ${listing.id_role}
             </p>
             <div class="btn-group">
             </div>
-            <button onclick="deletePublication(id)" class="btn btn-link">Delete</button>
+            <button onclick="DeleteUser('${listing.UserId}')" class="btn btn-link">Delete</button>
             <button onclick="(id)" class="btn btn-link">Edit</button>
 
           </div>

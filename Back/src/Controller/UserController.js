@@ -6,10 +6,11 @@ const { transporter } = require("../connexions/mailer");
 require("dotenv").config();
 const multer = require("multer");
 const path = require("path");
-const uploadDirectory = path.join(__dirname, "../uploads");
+const uploadDirectory = path.join(__dirname, "../public/uploads");
+const { extractToken } = require("../Utils/Token");
 
 // console.log(__dirname);
-// console.log(uploadDirectory);
+console.log(uploadDirectory);
 
 const insertImageProfile = async (req, res) => {
   let newFileName;
@@ -238,21 +239,25 @@ const valideAccount = async (req, res) => {
   }
 };
 
-const deleteUser = async (req, res) => {
-  try {
-    const token = req.params.Token;
-    console.log("ID de l'équipement à supprimer :", id);
-
-    const [result] = await pool.execute(
-      "DELETE FROM equipment WHERE EquipmentID = ?",
-      [id]
-    );
-    res.json({ message: "L'équipement a été supprimée avec succès." });
-    console.log("Résultat de la suppression :", result);
-  } catch (error) {
-    console.log(error.stack);
-    res.status(500).json({ message: "Erreur serveur" });
-  }
+const DeleteUser = async (req, res) => {
+  const token = await extractToken(req);
+  jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
+    if (err) {
+      console.log(err);
+      res.status(401).json({ err: "Unauthorized" });
+      return;
+    } else {
+      try {
+        const id = req.params.id;
+        const [rows] = await pool.execute(
+          `DELETE FROM user WHERE UserId ="${id}" `
+        );
+        res.json(rows);
+      } catch (err) {
+        console.log(err.stack);
+      }
+    }
+  });
 };
 
 module.exports = {
@@ -263,5 +268,5 @@ module.exports = {
   insertImageProfile,
   valideAccount,
   searchUser,
-  deleteUser,
+  DeleteUser,
 };

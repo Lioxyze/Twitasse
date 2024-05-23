@@ -70,6 +70,82 @@
       </div>
     </nav>
 
+    <!-- Modal de création de post -->
+    <div
+      class="modal fade"
+      id="createPostModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="createPostModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createPostModalLabel">
+              Modifier Le Post
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="postTitle">Titre du Post</label>
+                <input
+                  type="text"
+                  class="title form-control"
+                  id="postTitle"
+                  placeholder="Titre"
+                />
+              </div>
+              <div class="form-group">
+                <label for="postImage">Image du Post</label>
+                <input
+                  type="text"
+                  class="image form-control"
+                  id="postImage"
+                  placeholder="Image URL"
+                />
+              </div>
+              <div class="form-group">
+                <label for="postContent">Contenu du Post</label>
+                <textarea
+                  class="description form-control"
+                  id="postContent"
+                  rows="3"
+                  placeholder="Contenu du post"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Fermer
+            </button>
+            <button
+              type="button"
+              onclick="UpdatePost('${listing._id}')"
+              class="btn btn-primary"
+            >
+              Modifier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin du Modal de création de post -->
+
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-4">
@@ -136,5 +212,10 @@
     <script src="../logout.js"></script>
     <script src="../Home/mypost.js"></script>
     <script src="../Home/delete.js"></script>
+    <script src="./post.js"></script>
+    <script src="../logout.js"></script>
+    <script src="../Home/delete.js"></script>
+    <script src="../Home/edit.js"></script>
+    i
   </body>
 </html>

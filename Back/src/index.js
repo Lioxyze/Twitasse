@@ -7,7 +7,7 @@ let cors = require("cors");
 require("dotenv").config();
 
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "../uploads"));
+app.use(express.static(__dirname + "/public"));
 
 app.use(cors());
 const PORT = 3000;

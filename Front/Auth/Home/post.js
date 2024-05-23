@@ -9,10 +9,13 @@ async function getAllListings() {
     if (Array.isArray(response)) {
       response.forEach((listing) => {
         let imageUrl = `http://localhost:3000/uploads/${listing.profilePicture}`;
+
         console.log(imageUrl);
+
         let card = document.createElement("div");
         card.classList.add("card");
-        card.style.width = "18rem";
+        card.style.width = "33,1rem";
+        card.style.height = "35rem";
         card.style.padding = "23px";
         card.style.margin = "5px";
 
@@ -21,14 +24,14 @@ async function getAllListings() {
             <img src="${listing.image}" class="card-img-top imagesize" alt="Image">
             <div class="card-body">
               <div class="d-flex align-items-center mb-3">
-                <img src="${imageUrl}" class="rounded-circle mr-2" />
+                <img src=${imageUrl} class="rounded-circle mr-2"  height="30" />
                 <h6 class="card-subtitle text-muted">@${listing.pseudo}</h6>
               </div>
               
               <h5 class="card-title">${listing.title}</h5>
               <p class="card-text">${listing.description}</p>
               <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex justify-content-between ">
+              <div class="d-flex justify-content-between align-items-center">
                 <button type="button" class="btn btn-link">Commentaires</button>
                 <div class="like"></div>
                 </div>
@@ -118,6 +121,8 @@ async function createPost() {
     });
 
     if (response.ok) {
+      window.location.reload();
+
       console.log("Rental created successfully.");
       window.location.href = "./homeAdmin";
     } else {

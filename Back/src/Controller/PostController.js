@@ -65,32 +65,6 @@ const getAllPost = async (request, response) => {
   }
 };
 
-async function deletePost(req, res) {
-  const token = await extractToken(req);
-  jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
-    if (err) {
-      res.status(401).json({ err: "Unauthorized" });
-      return;
-    } else {
-      if (!req.params.id) {
-        res.status(400).send("Need a id");
-      }
-      let id = new ObjectId(req.params.id);
-      let PostDelete = await client
-        .db("Twitasse")
-        .collection("Posts")
-        .deleteOne({ _id: id });
-      let response = await PostDelete;
-
-      if (response.deletedCount === 1) {
-        res.status(200).json({ msg: "Delete" });
-      } else {
-        res.status(204).json({ msg: "Nothing here" });
-      }
-    }
-  });
-}
-
 const getSpecificPost = async (request, response) => {
   try {
     const objectId = new ObjectId(request.params.id);
@@ -133,42 +107,62 @@ const GetPublicationByUserId = async (request, response) => {
 };
 
 async function UpdatePost(req, res) {
-  const token = await extractToken(req);
-  jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
-    if (err) {
-      res.status(401).json({ err: "Unauthorized" });
-      return;
-    } else {
-      if (!req.body.title || !req.body.image || !req.body.description) {
-        res.status(400).json({ err: "Missing Field" });
-      }
+  // const token = await extractToken(req);
+  // jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
+  //   if (err) {
+  //     res.status(401).json({ err: "Unauthorized" });
+  //     return;
+  //   } else {
+  if (!req.body.title || !req.body.image || !req.body.description) {
+    res.status(400).json({ err: "Missing Field" });
+  }
 
-      let PostID = new ObjectId(req.params.id);
-      try {
-        const post = {
-          title: req.body.title,
-          description: req.body.description,
-          image: req.body.image,
-        };
-        console.log(post);
-        const result = await client
-          .db("Twitasse")
-          .collection("Posts")
-          .updateOne(
-            { _id: PostID },
-            {
-              $set: post,
-            }
-          );
-        console.log({ result });
-        res.status(200).json({ msg: "ca marche" });
-        return;
-      } catch (err) {
-        res.status(500).json({ err: "Error Serv" });
+  let PostID = new ObjectId(req.params.id);
+  try {
+    const post = {
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+    };
+    console.log(post);
+    const result = await client.db("Twitasse").collection("Posts").updateOne(
+      { _id: PostID },
+      {
+        $set: post,
       }
-    }
-  });
+    );
+    console.log({ result });
+    res.status(200).json({ msg: "ca marche" });
+    return;
+  } catch (err) {
+    res.status(500).json({ err: "Error Serv" });
+  }
 }
+
+const deletePost = async (request, response) => {
+  try {
+    // Création d'une instance d'ObjectId à partir de l'ID de l'utilisateur fourni dans les paramètres de la requête
+    let id = new ObjectId(request.params.id);
+    // Suppression de l'utilisateur de la base de données
+    let result = await client
+      .db("Twitasse")
+      .collection("Posts")
+      .deleteOne({ _id: id });
+
+    // Vérification si la suppression a été effectuée avec succès
+    if (result.deletedCount === 1) {
+      // Envoi d'une réponse avec un code de statut 200 et un message indiquant que la suppression a réussi
+      response.status(200).json({ msg: "Suppression réussie" });
+    } else {
+      // Envoi d'une réponse avec un code de statut 404 et un message indiquant que l'utilisateur n'existe pas
+      response.status(404).json({ msg: "Cet post n'existe pas" });
+    }
+  } catch (error) {
+    // En cas d'erreur, affichage de l'erreur dans la console et envoi d'une réponse avec un code de statut 501 et l'erreur au format JSON
+    console.log(error);
+    response.status(501).json(error);
+  }
+};
 
 module.exports = {
   AddPost,

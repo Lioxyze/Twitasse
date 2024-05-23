@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddEvent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    .main-container {
+      box-shadow: 0 2px 12px white;
+      background: none;
+      background-color: rgba(255, 255, 255, 0.655);
+    }
+  </style>
+  <body class="bg-black">
+    <header
+      class="header-container bg-red-600 rounded-b-full border-b-white text-white p-2"
+    >
+      <ol
+        class="flex text-center items-center underline underline-offset-4 m-4"
+      >
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum dolor.</li>
+      </ol>
+    </header>
+    <main
+      class="main-container h-96 flex flex-col m-8 justify-center text-white gap-3 items-center p-4 rounded-lg border-none"
+    >
+      <label for="Title" class="text-center">Title</label>
+      <input type="text" class="title w-40 border-2 text-black" />
+      <span class="error"></span>
+      <label for="Description">Description</label>
+      <input type="text" class="description w-40 border-2 text-black" />
+      <span class="error"></span>
+      <label for="image">Image</label>
+      <input
+        type="url"
+        placeholder="URL Only"
+        class="image w-40 border-2 text-black"
+      />
+      <span class="error"></span>
+      <button
+        class="AddEvent border-2 border-white text-white p-2 rounded-lg onclick='Update_Post(id)'"
+      >
+        Add Event
+      </button>
+      <span class="succes"></span>
+    </main>
+    <footer
+      class="footer-container bg-red-600 p-2 text-white text-sm absolute bottom-0 rounded-t-full"
+    >
+      <ul class="flex justify-around text-center">
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum dolor.</li>
+        <li>Lorem, ipsum dolor.</li>
+      </ul>
+    </footer>
+    <script src="../Home/edit.js"></script>
+  </body>
+</html>

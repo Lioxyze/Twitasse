@@ -8,7 +8,7 @@ const {
   valideAccount,
   testEmail,
   searchUser,
-  deleteUser,
+  DeleteUser,
 } = require("../UserController");
 
 user.post("/register", register);
@@ -18,6 +18,6 @@ user.get("/getAllUsers", getAllUsers);
 user.get("/valideAccount", valideAccount);
 user.get("/testEmail", testEmail);
 user.post("/searchUser", searchUser);
-user.post("/deleteUser/", deleteUser);
+user.delete("/DeleteUser/:id", DeleteUser);
 
 module.exports = user;
