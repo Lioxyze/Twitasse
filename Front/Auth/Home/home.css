@@ -38,3 +38,77 @@
 .fadeInUp {
   animation-name: fadeInUp;
 }
+
+.commentaire {
+  margin-right: 10px;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+}
+
+.like i {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.like-button .liked {
+  color: red; /* Change la couleur du cœur quand il est liké */
+}
+.like-button .liked {
+  color: red; /* Change la couleur du cœur quand il est liké */
+}
+
+.like-button .fas {
+  transition: transform 0.3s ease;
+}
+
+.like-button .fas.clicked {
+  animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-link.commentaire {
+  display: flex;
+  align-items: center;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-link.commentaire:hover {
+  color: #0056b3;
+  transform: scale(1.1);
+}
+
+.btn-link.commentaire i {
+  margin-right: 5px;
+}
+
+.btn-link.commentaire.clicked {
+  animation: bounce 0.3s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

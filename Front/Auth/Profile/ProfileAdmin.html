@@ -42,13 +42,15 @@
             <a class="nav-link" href="#">Messages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Auth/Profile/ProfilePage.html">Profil</a>
+            <a class="nav-link" href="/Auth/Profile/ProfileAdmin.html"
+              >Profil</a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Notifications</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Home/AdminGestion.html">Admin</a>
+            <a class="nav-link" href="/Auth/Home/AdminGestion.html">Admin</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -135,7 +137,7 @@
             </button>
             <button
               type="button"
-              onclick="UpdatePost('${listing._id}')"
+              onclick="updatePost(_id)"
               class="btn btn-primary"
             >
               Modifier
@@ -149,18 +151,7 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Profil"
-                class="img-fluid rounded-circle mb-3"
-              />
-              <h5 class="card-title">@nom_utilisateur</h5>
-              <p class="card-text">Bio de l'utilisateur.</p>
-              <button class="btn btn-primary">Modifier le profil</button>
-            </div>
-          </div>
+          <div class="cardsUser mb-4"></div>
 
           <div class="card mb-4">
             <div class="card-body">
@@ -202,7 +193,7 @@
 
     <footer class="footer mt-auto py-3 bg-light">
       <div class="container text-center">
-        <span class="text-muted">© 2024 Instagram</span>
+        <span class="text-muted">© 2024 Twitasse</span>
       </div>
     </footer>
 
@@ -212,7 +203,6 @@
     <script src="../logout.js"></script>
     <script src="../Home/mypost.js"></script>
     <script src="../Home/delete.js"></script>
-    <script src="./post.js"></script>
     <script src="../logout.js"></script>
     <script src="../Home/delete.js"></script>
     <script src="../Home/edit.js"></script>

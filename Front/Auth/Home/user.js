@@ -19,7 +19,6 @@ async function getAllListings() {
 
       card.innerHTML = `
         <div class="card mb-4">
-                <img src=${imageUrl} class="rounded-circle mr-2"  height="30" />
           <div class="card-body">
             <div class="d-flex align-items-center mb-3">
             </div>

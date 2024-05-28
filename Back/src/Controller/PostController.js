@@ -1,9 +1,10 @@
 const { Post } = require("../Model/Post");
-const { ObjectId } = require("bson");
+// const { ObjectId } = require("bson");
 const client = require("../connexions/MongoDb");
 const { extractToken } = require("../Utils/Token");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const { ObjectId } = require("mongodb");
 
 async function AddPost(req, res) {
   try {
@@ -106,39 +107,6 @@ const GetPublicationByUserId = async (request, response) => {
   });
 };
 
-async function UpdatePost(req, res) {
-  // const token = await extractToken(req);
-  // jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
-  //   if (err) {
-  //     res.status(401).json({ err: "Unauthorized" });
-  //     return;
-  //   } else {
-  if (!req.body.title || !req.body.image || !req.body.description) {
-    res.status(400).json({ err: "Missing Field" });
-  }
-
-  let PostID = new ObjectId(req.params.id);
-  try {
-    const post = {
-      title: req.body.title,
-      description: req.body.description,
-      image: req.body.image,
-    };
-    console.log(post);
-    const result = await client.db("Twitasse").collection("Posts").updateOne(
-      { _id: PostID },
-      {
-        $set: post,
-      }
-    );
-    console.log({ result });
-    res.status(200).json({ msg: "ca marche" });
-    return;
-  } catch (err) {
-    res.status(500).json({ err: "Error Serv" });
-  }
-}
-
 const deletePost = async (request, response) => {
   try {
     // Création d'une instance d'ObjectId à partir de l'ID de l'utilisateur fourni dans les paramètres de la requête
@@ -164,12 +132,43 @@ const deletePost = async (request, response) => {
   }
 };
 
+async function UpdatePosts(req, res) {
+  try {
+    if (!req.body.title || !req.body.image || !req.body.description) {
+      res.status(400).json({ err: "Missing Field" });
+      return;
+    }
+
+    let PostID = new ObjectId(req.params.id);
+
+    // Supprimer la vérification du token
+
+    const post = {
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+    };
+
+    const result = await client.db("Twitasse").collection("Posts").updateOne(
+      { _id: PostID },
+      {
+        $set: post,
+      }
+    );
+
+    console.log({ result });
+    res.status(200).json({ msg: "ca marche" });
+  } catch (err) {
+    res.status(500).json({ err: "Error Serv" });
+  }
+}
+
 module.exports = {
   AddPost,
   getAllPost,
-  UpdatePost,
   getSpecificPost,
   GetPublicationByUserId,
   extractToken,
   deletePost,
+  UpdatePosts,
 };

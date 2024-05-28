@@ -1,31 +1,31 @@
-async function UpdatePost(id) {
-  let Image = document.querySelector(".image").value;
-  let Title = document.querySelector(".title").value;
-  let Description = document.querySelector(".description").value;
+async function updatePost(_id) {
+  const title = document.querySelector(".postTitle").value;
+  const image = document.querySelector(".postImage").value;
+  const description = document.querySelector(".postDescription").value;
 
-  if (!Image || !Title || !Description) {
-    console.error("One or more input elements not found");
-    return;
-  }
+  const updatedPost = { title, image, description };
 
-  let jwt = window.localStorage.getItem("jwt");
-  if (!jwt) {
-    console.log("Problème");
-  }
-  const response = await fetch(`http://localhost:3000/api/UpdatePost/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      Authorization: `Bearer ${jwt}`,
-    },
-  });
+  try {
+    const jwt = window.localStorage.getItem("jwt");
+    console.log(_id);
+    const response = await fetch(
+      `http://localhost:3000/api/UpdatePost/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorization: `Bearer ${jwt}`,
+        },
+        body: JSON.stringify(updatedPost),
+      }
+    );
 
-  if (response.ok) {
-    const data = await response.json();
-    alert(data.message);
-    window.location.reload();
-  } else {
-    console.error("La modif a échoué :", response.statusText);
+    if (response.ok) {
+      window.location.reload();
+    } else {
+      console.error("La mise à jour a échoué :", response.statusText);
+    }
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour :", error);
   }
 }
-// reload the current page

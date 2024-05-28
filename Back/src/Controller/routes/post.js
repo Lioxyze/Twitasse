@@ -2,7 +2,7 @@ const express = require("express");
 const {
   AddPost,
   getAllPost,
-  UpdatePost,
+  UpdatePosts,
   getSpecificPost,
   GetPublicationByUserId,
   deletePost,
@@ -11,7 +11,7 @@ const publi = express.Router();
 
 publi.post("/AddPost", AddPost);
 publi.get("/AllPost", getAllPost);
-publi.put("/UpdatePost/:id", UpdatePost);
+publi.patch("/UpdatePost/:id", UpdatePosts);
 publi.get("/getSpecificPost/:id", getSpecificPost);
 publi.get("/GetPublicationByUserId", GetPublicationByUserId);
 publi.delete("/deletePost/:id", deletePost);

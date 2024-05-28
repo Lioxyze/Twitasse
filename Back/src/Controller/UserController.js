@@ -213,32 +213,6 @@ const testEmail = async (req, res) => {
   }
 };
 
-const valideAccount = async (req, res) => {
-  try {
-    // On récupère le token présent dans le lien de l'email.
-    const token = req.params.Token;
-    // On recherche l'utilisateur qui aurait ce token, que nous avions insérer lors
-    // de la création
-    const sql = `SELECT * FROM user WHERE Token = ?`;
-    const values = [token];
-    const [result] = await pool.execute(sql, values);
-    if (!result) {
-      res.status(204).json({ error: "Wrong credentials" });
-      return;
-    }
-    // Si l'utilisateur ayant ce token existe, alors j'active le compte ,
-    // et supprime le token car il ne me sera plus utile pour le moment
-    await pool.execute(
-      `UPDATE user SET isActive = 1, token = NULL WHERE token = ?`,
-      [token]
-    );
-    res.status(200).json({ result: "Account a ctivated" });
-  } catch (error) {
-    res.status(500).json({ error: error.stack });
-    console.log(error.stack);
-  }
-};
-
 const DeleteUser = async (req, res) => {
   const token = await extractToken(req);
   jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
@@ -260,6 +234,186 @@ const DeleteUser = async (req, res) => {
   });
 };
 
+const updatePassword = async (req, res) => {
+  const tokenmailer = req.params.token;
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+  const token = await extractToken(req);
+  jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
+    if (err) {
+      console.log(err);
+      res.status(401).json({ err: "Unauthorized" });
+      return;
+    } else {
+      try {
+        const data = [hashedPassword, tokenmailer];
+        const sql = `UPDATE user SET Password = ? WHERE Token= ?;  `;
+
+        const [rows] = await pool.execute(sql, data);
+        res.json(rows);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+};
+
+const UpdateMailpassword = async (req, res) => {
+  const token = await extractToken(req);
+  jwt.verify(token, process.env.MY_SUPER_SECRET_KEY, async (err, authData) => {
+    if (err) {
+      console.log(err);
+      res.status(401).json({ err: "Unauthorized" });
+      return;
+    } else {
+      const email = authData.Email;
+      const tokenTemporaire = jwt.sign(
+        {
+          id: authData.UserId,
+          email: authData.Email,
+        },
+
+        process.env.MY_SUPER_SECRET_KEY,
+        { expiresIn: "1h" }
+      );
+      const data = [tokenTemporaire, email];
+      const sql = `UPDATE user SET Token = ? WHERE Email = ?;  `;
+
+      const [rows] = await pool.execute(sql, data);
+
+      if (rows.affectedRows === 1) {
+        const link = `http://127.0.0.1:5500/Auth/Change_Password/change_password.html?token=${tokenTemporaire}`;
+
+        const info = await transporter.sendMail({
+          from: `Twittasse@gmail.com`,
+          to: "lorenzopro38@gmail.com",
+          subject: `changer votre mot de passe`,
+          text: `suivre le mail suivant`,
+          html: `<b>Bonjour ${authData.pseudo}</b>
+    <p>voici le lien qui vous permettra de changer votre mot de passe : </p>
+    <a href="${link}" >cliquer ici</a>`,
+        });
+
+        res
+          .status(200)
+          .json({ msg: `Message send with the id ${info.messageId}` });
+      }
+    }
+  });
+};
+
+// Activation de compte
+const valideAccount = async (req, res) => {
+  try {
+    // On récupère le token présent dans le lien de l'email.
+    const token = req.params.token;
+    // On recherche l'utilisateur qui aurait ce token, que nous avions insérer lors
+    // de la création
+    const sql = `SELECT * FROM user WHERE token = ?`;
+    const values = [token];
+    const [result] = await pool.execute(sql, values);
+    if (!result) {
+      res.status(204).json({ error: "Wrong credentials" });
+      return;
+    }
+    // Si l'utilisateur ayant ce token existe, alors j'active le compte ,
+    // et supprime le token car il ne me sera plus utile pour le moment
+    await pool.execute(
+      `UPDATE user SET is_active = 1, token = NULL WHERE token = ?`,
+      [token]
+    );
+    return res.status(200).json({ result: "Account activated" });
+  } catch (error) {
+    res.status(500).json({ error: error.stack });
+    console.log(error.stack);
+  }
+};
+
+// Génération du mail renouvellement mot de passe
+const emailForgotPassword = async (req, res) => {
+  if (!req.body.email) {
+    res
+      .status(400)
+      .json({ error: "merci d'indiquer votre mail de connexion !" });
+    return;
+  }
+  try {
+    const email = req.body.email;
+    const values = [email];
+    const sql = `SELECT * FROM user WHERE email =  ?`;
+    const [result] = await pool.execute(sql, values);
+    if (result.length === 0) {
+      res.status(400).json({
+        error: "Ce mail est erroné",
+      });
+      return;
+    } else {
+      const token = jwt.sign(
+        {
+          email: result[0].email,
+          id: result[0].id,
+          user_name: result[0].user_name,
+          picture_user: result[0].picture_user,
+        },
+        process.env.SECRET_KEY,
+        { expiresIn: "20d" }
+      );
+      const info = await transporter.sendMail({
+        from: `${process.env.SMTP_EMAIL}`,
+        to: "steve.chapuis4@free.fr",
+        subject: "Regénération de votre mot de passe ✔",
+        text: "Activer votre compte",
+        html: `<p> You need to activate your email, to access our services, please click on this link :
+                <a href="http://127.0.0.1:5500/front/Views/auth/ForgotPassword.html?token=${token}">Activate your email</a>
+          </p>`,
+      });
+      console.log(result);
+      // res.status(201).json({ success: "Envoie de mail réussi" });
+      console.log();
+      res.status(200).json({ jwt: token });
+      return;
+    }
+  } catch (error) {
+    console.log(error.stack);
+    res.status(500).json({ error: "Erreur du serveur" });
+    return;
+  }
+};
+
+// Réinitialisation du mot de passe
+const ForgotPassword = async (request, response) => {
+  const token = await extractToken(request);
+  jwt.verify(token, process.env.SECRET_KEY, async (err, authData) => {
+    if (err) {
+      console.log(err);
+      response
+        .status(401)
+        .json({ err: "Requête non autorisée le Token n'est pas bon" });
+      return;
+    }
+    if (!request.body.password) {
+      response.status(400).json({ error: "Champs manquants" });
+      return;
+    }
+    const password = request.body.password;
+    const email = authData.email;
+    const hash = await bcrypt.hash(password, 10);
+    const sqlModifRequest = `UPDATE user SET password = ? WHERE email = ?`;
+
+    const modifValues = [hash, email];
+    const [rows] = await pool.execute(sqlModifRequest, modifValues);
+    if (rows.affectedRows > 0) {
+      response
+        .status(201)
+        .json({ success: "Mofification mot de passe réussi" });
+      return;
+    } else {
+      response.status(500).json({ error: "L'inscription a échoué" });
+      return;
+    }
+  });
+};
+
 module.exports = {
   register,
   login,
@@ -269,4 +423,9 @@ module.exports = {
   valideAccount,
   searchUser,
   DeleteUser,
+  updatePassword,
+  UpdateMailpassword,
+  valideAccount,
+  emailForgotPassword,
+  ForgotPassword,
 };

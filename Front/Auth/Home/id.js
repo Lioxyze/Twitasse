@@ -4,7 +4,7 @@ async function getAllListings() {
     let response = await apiCall.json();
     console.log(response);
 
-    let cardsContainer = document.querySelector(".cards");
+    let cardsContainer = document.querySelector(".cardss");
 
     if (Array.isArray(response)) {
       response.forEach((listing) => {
@@ -14,10 +14,6 @@ async function getAllListings() {
 
         let card = document.createElement("div");
         card.classList.add("card");
-        card.style.width = "33,1rem";
-        card.style.height = "40rem";
-        card.style.padding = "23px";
-        card.style.margin = "5px";
 
         card.innerHTML = `
 <div class="card mb-4 position-relative">
@@ -37,11 +33,7 @@ async function getAllListings() {
     <p class="card-text">${listing.description}</p>
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-link commentaire" onclick="toggleComments(this)">
-          <i class="far fa-comments"></i> Commentaires
-        </button>
-        <button type="button" class="btn btn-link like-button" onclick="toggleLike(this)">
-          <i class="far fa-heart"></i>
+                <button  type="button"  onclick="deletePost('${listing._id}')" class="btn-primary">Delete</button>
         </button>
       </div>
     </div>

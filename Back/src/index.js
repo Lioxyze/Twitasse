@@ -2,6 +2,7 @@ const express = require("express");
 const { connect } = require("./connexions/MongoDb");
 const user = require("./Controller/routes/user");
 const publi = require("./Controller/routes/post");
+// const publii = require("./Controller/updateController");
 const app = express();
 let cors = require("cors");
 require("dotenv").config();
@@ -31,6 +32,7 @@ app.use(express.json());
 
 app.use("/api", user);
 app.use("/api", publi);
+// app.use("/api", publii);
 
 app.listen(PORT);
 console.log("Le serveur marche bien sur le port", PORT);
