@@ -13,16 +13,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="home.css" />
-    <style>
-      .cards .card {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-      .card-img-top {
-        height: 200px;
-        object-fit: cover;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,41 +39,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="../Home/homeAdmin.html"
-              >Accueil <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Messages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Auth/Profile/ProfileAdmin.html"
-              >Profil</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Notifications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Auth/Home/AdminGestion.html">Admin</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Rechercher"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Rechercher
-          </button>
-        </form>
+        <ul class="navbar-nav mr-auto"></ul>
+
         <a href="../Login_Register/login.html">
           <button class="btn btn-success ml-2" type="button" onclick="logout()">
-            Logout
+            Login
+          </button>
+        </a>
+        <a href="../Login_Register/register.html">
+          <button class="btn btn-success ml-2" type="button" onclick="logout()">
+            Register
           </button>
         </a>
       </div>
@@ -84,17 +57,7 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-3">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Profil</h5>
-              <img
-                src="https://via.placeholder.com/150"
-                alt="Profil"
-                class="img-fluid rounded-circle mb-3"
-              />
-              <p class="card-text">Nom d'utilisateur</p>
-            </div>
-          </div>
+          <div class="cardsUser"></div>
           <div class="card mb-4">
             <div class="card-body">
               <h5 class="card-title">Notifications</h5>
@@ -244,5 +207,7 @@
     <script src="../logout.js"></script>
     <script src="./like.js"></script>
     <script src="../Home/Sugestion.js"></script>
+    <script src="../Home/id.js"></script>
+    <script src="../Home/mypost.js"></script>
   </body>
 </html>
